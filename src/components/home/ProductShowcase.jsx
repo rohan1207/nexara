@@ -23,63 +23,52 @@ function ProductCard({ product, index }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.4, delay: index * 0.04 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-[0_4px_24px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_20px_50px_rgba(251,191,36,0.14)] sm:rounded-[1.75rem]"
+      className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-neutral-100 bg-white shadow-[0_4px_24px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_20px_50px_rgba(251,191,36,0.14)] sm:rounded-[1.75rem]"
     >
       <div className="relative overflow-hidden bg-neutral-100">
         <OptimizedImage
           src={product.image}
           alt={product.title}
-          className="aspect-[16/10] sm:aspect-[4/3]"
+          className="aspect-[5/4] sm:aspect-[4/3]"
           imgClassName="transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/75 via-neutral-950/15 to-neutral-950/10" />
-
-        <span className="absolute left-3 top-3 max-w-[calc(100%-1.5rem)] truncate rounded-full bg-neutral-950 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-amber-400 shadow-md sm:left-4 sm:top-4 sm:px-3 sm:py-1.5 sm:text-[11px]">
-          {product.tag}
-        </span>
-
-        <span className="absolute bottom-3 right-3 hidden font-display text-3xl font-bold leading-none text-white/20 sm:block sm:bottom-4 sm:right-4 sm:text-4xl">
-          {String(index + 1).padStart(2, "0")}
-        </span>
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80 sm:from-neutral-950/70 sm:opacity-80" />
       </div>
 
-      <div className="flex flex-1 flex-col p-4 sm:p-5 md:p-6">
-        <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600 sm:hidden">
-          {productCategories.find((c) => c.id === product.category)?.label}
-        </p>
-        <h3 className="font-display text-sm font-bold leading-snug text-neutral-950 sm:text-base md:text-lg">
+      <div className="flex min-w-0 flex-1 flex-col p-2.5 sm:p-5 md:p-6">
+        <h3 className="font-display text-[11px] font-bold leading-snug text-neutral-950 sm:text-base md:text-lg">
           {product.title}
         </h3>
-        <p className="mt-2 flex-1 text-xs leading-relaxed text-neutral-600 line-clamp-3 sm:mt-2 sm:text-sm">
+        <p className="mt-1 flex-1 text-[10px] leading-relaxed text-neutral-600 line-clamp-2 sm:mt-2 sm:text-sm sm:line-clamp-3">
           {product.description}
         </p>
 
-        <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:gap-2.5">
+        <div className="mt-2 grid grid-cols-2 gap-1 sm:mt-5 sm:gap-2.5">
           {product.email ? (
             <a
               href={`mailto:${primaryEmail}?subject=${encodeURIComponent(`Enquiry: ${product.title}`)}`}
-              className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm font-semibold text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:flex-1 sm:py-2.5"
+              className="inline-flex min-w-0 items-center justify-center rounded-full border border-amber-200 bg-amber-50 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
             >
-              <Mail className="h-4 w-4 shrink-0 text-amber-600" />
-              Email us
+              <Mail className="hidden h-3.5 w-3.5 text-amber-600 sm:block md:h-4 md:w-4" />
+              <span className="truncate">Email</span>
             </a>
           ) : (
             <a
               href={product.download}
               download
-              className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm font-semibold text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:flex-1 sm:py-2.5"
+              className="inline-flex min-w-0 items-center justify-center rounded-full border border-amber-200 bg-amber-50 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
             >
-              <Download className="h-4 w-4 shrink-0 text-amber-600" />
-              Download
+              <Download className="hidden h-3.5 w-3.5 text-amber-600 sm:block md:h-4 md:w-4" />
+              <span className="truncate">Download</span>
             </a>
           )}
 
           <a
             href={quoteHref(product.title)}
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-neutral-800 sm:flex-1 sm:py-2.5"
+            className="inline-flex min-w-0 items-center justify-center gap-0.5 rounded-full bg-neutral-950 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-white transition-all hover:bg-neutral-800 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
           >
-            Get quote
-            <ArrowUpRight className="h-4 w-4 shrink-0 text-amber-400" />
+            <span className="truncate">Get quote</span>
+            <ArrowUpRight className="h-3 w-3 shrink-0 text-amber-400 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
           </a>
         </div>
       </div>
@@ -168,7 +157,7 @@ export default function ProductShowcase() {
           <motion.div
             key={activeCategory}
             layout
-            className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
+            className="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:gap-4 md:gap-5 lg:grid-cols-3"
           >
             {filtered.map((product, i) => (
               <ProductCard key={product.id} product={product} index={i} />
