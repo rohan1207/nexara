@@ -5,7 +5,22 @@ import { Reveal, Stagger, StaggerItem } from "../ui/Reveal";
 
 const icons = [Wrench, Cog, Ruler, Settings2, Wrench, Cog, Settings2];
 
+function ServiceCard({ item, index }) {
+  const Icon = icons[index % icons.length];
+
+  return (
+    <div className="group flex h-full items-center gap-2 rounded-xl border border-neutral-100 bg-white px-3 py-3 shadow-[0_4px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_12px_40px_rgba(251,191,36,0.1)] sm:gap-3 sm:rounded-2xl sm:px-4 sm:py-4">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-500 text-neutral-950 sm:h-9 sm:w-9">
+        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+      </span>
+      <p className="text-xs font-medium leading-snug text-neutral-700 sm:text-sm">{item}</p>
+    </div>
+  );
+}
+
 export default function ServicesSection() {
+  const topRow = services.items.slice(0, 4);
+  const bottomRow = services.items.slice(4);
   return (
     <section id="services" className="relative overflow-hidden bg-neutral-50 section-py">
       <div className="pointer-events-none absolute inset-0" aria-hidden>
@@ -33,19 +48,22 @@ export default function ServicesSection() {
         </Reveal>
 
         <Stagger className="mt-10 card-grid-2-4 sm:mt-14" stagger={0.05}>
-          {services.items.map((item, i) => {
-            const Icon = icons[i % icons.length];
-            return (
-              <StaggerItem key={item}>
-                <div className="group flex h-full items-center gap-2 rounded-xl border border-neutral-100 bg-white px-3 py-3 shadow-[0_4px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_12px_40px_rgba(251,191,36,0.1)] sm:gap-3 sm:rounded-2xl sm:px-4 sm:py-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-500 text-neutral-950 sm:h-9 sm:w-9">
-                    <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                  </span>
-                  <p className="text-xs font-medium leading-snug text-neutral-700 sm:text-sm">{item}</p>
-                </div>
-              </StaggerItem>
-            );
-          })}
+          {topRow.map((item, i) => (
+            <StaggerItem key={item}>
+              <ServiceCard item={item} index={i} />
+            </StaggerItem>
+          ))}
+        </Stagger>
+
+        <Stagger
+          className="mt-3 grid grid-cols-1 gap-2 sm:mt-4 sm:grid-cols-2 sm:gap-4 lg:mx-auto lg:max-w-[75%] lg:grid-cols-3 lg:gap-5"
+          stagger={0.05}
+        >
+          {bottomRow.map((item, i) => (
+            <StaggerItem key={item} className={i === 2 ? "sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%-0.5rem)] lg:col-span-1 lg:mx-0 lg:max-w-none" : ""}>
+              <ServiceCard item={item} index={i + 4} />
+            </StaggerItem>
+          ))}
         </Stagger>
 
         <Reveal delay={0.15} className="mt-10 text-center">

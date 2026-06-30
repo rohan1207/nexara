@@ -24,14 +24,6 @@ function BgShapes() {
           maskImage: "radial-gradient(circle at 100% 100%, black 0%, transparent 70%)",
         }}
       />
-      <svg
-        className="absolute left-[42%] top-12 hidden h-24 w-24 text-amber-200/40 lg:block"
-        viewBox="0 0 100 100"
-        fill="none"
-      >
-        <path d="M10 50 Q50 10 90 50 Q50 90 10 50" stroke="currentColor" strokeWidth="0.75" />
-        <circle cx="50" cy="50" r="18" stroke="currentColor" strokeWidth="0.75" />
-      </svg>
     </div>
   );
 }
@@ -42,9 +34,9 @@ export default function AboutPreview() {
       <BgShapes />
 
       <div className="relative mx-auto max-w-[1400px] px-5 md:px-8 lg:px-10">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-14">
-          {/* Copy */}
-          <div className="min-w-0 lg:col-span-5 xl:col-span-5">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-10 xl:gap-14">
+          {/* Left copy */}
+          <div className="flex min-w-0 flex-col lg:col-span-5 xl:col-span-5">
             <Reveal>
               <div className="flex items-start gap-4">
                 <div className="mt-2 hidden h-16 w-1 shrink-0 rounded-full bg-gradient-to-b from-amber-500 to-amber-200 sm:block" />
@@ -69,7 +61,7 @@ export default function AboutPreview() {
             </Reveal>
 
             <Stagger
-              className="mt-6 grid grid-cols-1 gap-2 sm:mt-8 sm:grid-cols-2 sm:gap-3"
+              className="mt-6 grid grid-cols-1 gap-2 sm:mt-8 sm:grid-cols-2 sm:gap-3 lg:flex-1"
               stagger={0.07}
             >
               {aboutSummary.pillars.map((pillar, i) => (
@@ -84,84 +76,92 @@ export default function AboutPreview() {
                   </div>
                 </StaggerItem>
               ))}
-
-              <StaggerItem className="flex min-w-0 items-center justify-end sm:col-start-2">
-                <PillButton
-                  to="/about"
-                  variant="primary"
-                  className="w-auto shrink-0 border-0 bg-neutral-950 px-5 text-white hover:bg-neutral-800"
-                >
-                  Read more
-                  <ArrowUpRight className="h-4 w-4 text-amber-400" />
-                </PillButton>
-              </StaggerItem>
             </Stagger>
 
-            <Reveal delay={0.2} className="mt-4 flex flex-wrap gap-1.5 sm:mt-3">
-              {aboutSummary.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-amber-100 bg-white px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-neutral-500 sm:px-3 sm:py-1 sm:text-[11px]"
-                >
-                  {tag}
-                </span>
-              ))}
+            <Reveal
+              delay={0.15}
+              className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:items-center sm:justify-between lg:mt-auto lg:pt-6"
+            >
+              <div className="flex flex-wrap gap-1.5">
+                {aboutSummary.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-amber-100 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-neutral-500 sm:px-3 sm:text-[11px]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <PillButton
+                to="/about"
+                variant="primary"
+                className="w-full shrink-0 border-0 bg-neutral-950 px-5 text-white hover:bg-neutral-800 sm:w-auto"
+              >
+                Read more
+                <ArrowUpRight className="h-4 w-4 text-amber-400" />
+              </PillButton>
             </Reveal>
           </div>
 
-          {/* Visual bento */}
-          <Reveal direction="right" className="relative min-w-0 lg:col-span-7 xl:col-span-7">
-            <div className="absolute -right-2 -top-2 h-full w-full rounded-[2rem] border border-amber-200/40 md:-right-4 md:-top-4 md:rounded-[2.5rem]" />
+          {/* Right visuals */}
+          <Reveal direction="right" className="flex min-w-0 flex-col lg:col-span-7 xl:col-span-7">
+            <div className="relative flex flex-1 flex-col gap-3 md:gap-4">
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-12 md:grid-rows-2 md:gap-4">
+                <div className="relative col-span-2 min-h-[220px] overflow-hidden rounded-2xl md:col-span-8 md:row-span-2 md:min-h-[360px] md:rounded-[1.75rem] lg:min-h-[400px]">
+                  <OptimizedImage
+                    src={images.factory[1]}
+                    alt="Nexara Traders industrial operations"
+                    className="h-full w-full"
+                    imgClassName="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-neutral-950/50 via-transparent to-amber-500/10" />
+                  <div className="absolute bottom-3 left-3 rounded-xl border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-md sm:bottom-4 sm:left-4 sm:rounded-2xl sm:px-4 sm:py-3 md:bottom-6 md:left-6">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-300">Since 1990s</p>
+                    <p className="mt-0.5 font-display text-xs font-bold text-white sm:text-sm md:text-base">
+                      Trusted nationwide
+                    </p>
+                  </div>
+                </div>
 
-            <div className="relative grid grid-cols-12 gap-3 md:gap-4">
-              <div className="relative col-span-12 overflow-hidden rounded-[1.75rem] sm:col-span-8 sm:row-span-2 sm:min-h-[340px] md:min-h-[400px] md:rounded-[2rem]">
-                <OptimizedImage
-                  src={images.factory[1]}
-                  alt="Nexara Traders industrial operations"
-                  className="h-full min-h-[240px] w-full object-cover sm:min-h-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-neutral-950/50 via-transparent to-amber-500/10" />
-                <div className="absolute bottom-4 left-4 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 backdrop-blur-md md:bottom-6 md:left-6">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-300">Since 1990s</p>
-                  <p className="mt-0.5 font-display text-sm font-bold text-white md:text-base">Trusted nationwide</p>
+                <div className="relative col-span-1 min-h-[120px] overflow-hidden rounded-xl md:col-span-4 md:col-start-9 md:row-start-1 md:min-h-0 md:rounded-2xl">
+                  <OptimizedImage
+                    src={images.factory[2]}
+                    alt="Technical expertise"
+                    className="h-full w-full"
+                    imgClassName="h-full w-full object-cover"
+                  />
+                </div>
+
+                <div className="relative col-span-1 min-h-[120px] overflow-hidden rounded-xl md:col-span-4 md:col-start-9 md:row-start-2 md:min-h-0 md:rounded-2xl">
+                  <OptimizedImage
+                    src={images.factory[3]}
+                    alt="Industrial solutions"
+                    className="h-full w-full"
+                    imgClassName="h-full w-full object-cover"
+                  />
                 </div>
               </div>
 
-              <div className="col-span-6 overflow-hidden rounded-2xl sm:col-span-4 sm:row-span-1">
-                <OptimizedImage
-                  src={images.factory[2]}
-                  alt="Technical expertise"
-                  className="aspect-square w-full object-cover"
-                />
-              </div>
-
-              <div className="col-span-6 overflow-hidden rounded-2xl sm:col-span-4 sm:row-span-1">
-                <OptimizedImage
-                  src={images.factory[3]}
-                  alt="Industrial solutions"
-                  className="aspect-square w-full object-cover"
-                />
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15, duration: 0.45 }}
+                className="grid grid-cols-2 divide-x divide-amber-100 overflow-hidden rounded-xl border border-amber-100/80 bg-white shadow-[0_8px_32px_rgba(251,191,36,0.1)] sm:grid-cols-4 sm:rounded-2xl"
+              >
+                {aboutSummary.highlights.map((item) => (
+                  <div key={item.label} className="min-w-0 px-3 py-3 text-center sm:px-4 sm:py-4">
+                    <p className="font-display text-base font-bold text-neutral-950 sm:text-lg md:text-xl">
+                      {item.value}
+                    </p>
+                    <p className="mt-0.5 text-[9px] font-medium uppercase leading-tight tracking-wide text-neutral-500 sm:text-[10px]">
+                      {item.label}
+                    </p>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="relative z-10 -mt-6 mx-2 grid grid-cols-2 gap-2 rounded-2xl border border-amber-100/80 bg-white p-3 shadow-[0_16px_48px_rgba(251,191,36,0.12)] sm:mx-4 sm:grid-cols-4 sm:gap-0 sm:divide-x sm:divide-amber-100 sm:p-0 md:-mt-8 md:mx-8"
-            >
-              {aboutSummary.highlights.map((item) => (
-                <div key={item.label} className="min-w-0 px-2 py-2.5 text-center sm:px-4 sm:py-4">
-                  <p className="truncate font-display text-base font-bold text-neutral-950 sm:text-lg md:text-xl">
-                    {item.value}
-                  </p>
-                  <p className="mt-0.5 text-[9px] font-medium uppercase leading-tight tracking-wide text-neutral-500 sm:text-[10px]">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
           </Reveal>
         </div>
       </div>
