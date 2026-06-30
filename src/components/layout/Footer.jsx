@@ -150,4 +150,11 @@ export default function Footer() {
           </PillButton>
         </div>
 
-        <p className="mt-6 text-c
+        <p className="mt-6 text-center text-xs text-neutral-500">
+          Designed and developed by{" "}
+          <span className="font-semibold text-neutral-400">TheSocialKollab</span>
+        </p>
+      </div>
+    </footer>
+  );
+}

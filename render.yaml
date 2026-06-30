@@ -1,13 +1,16 @@
 services:
   - type: web
-    name: futureal
-    env: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
+    name: nexara-traders
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
     headers:
       - path: /*
         name: Cache-Control
-        value: no-cache
+        value: public, max-age=0, must-revalidate
     routes:
       - type: rewrite
         source: /*
