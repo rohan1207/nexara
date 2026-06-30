@@ -23,61 +23,63 @@ function ProductCard({ product, index }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.4, delay: index * 0.04 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-neutral-100 bg-white shadow-[0_4px_24px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_20px_50px_rgba(251,191,36,0.14)] sm:rounded-[1.75rem]"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-[0_4px_24px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_20px_50px_rgba(251,191,36,0.14)] sm:rounded-[1.75rem]"
     >
       <div className="relative overflow-hidden bg-neutral-100">
         <OptimizedImage
           src={product.image}
           alt={product.title}
-          className="aspect-[4/3]"
+          className="aspect-[16/10] sm:aspect-[4/3]"
           imgClassName="transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-950/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/0 to-amber-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/75 via-neutral-950/15 to-neutral-950/10" />
 
-        <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
-          {productCategories.find((c) => c.id === product.category)?.label ?? "Product"}
+        <span className="absolute left-3 top-3 max-w-[calc(100%-1.5rem)] truncate rounded-full bg-neutral-950 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-amber-400 shadow-md sm:left-4 sm:top-4 sm:px-3 sm:py-1.5 sm:text-[11px]">
+          {product.tag}
         </span>
 
-        <span className="absolute bottom-4 right-4 font-display text-4xl font-bold leading-none text-white/15">
+        <span className="absolute bottom-3 right-3 hidden font-display text-3xl font-bold leading-none text-white/20 sm:block sm:bottom-4 sm:right-4 sm:text-4xl">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-3 sm:p-5 md:p-6">
-        <h3 className="font-display text-xs font-bold leading-snug text-neutral-950 sm:text-base md:text-lg">
+      <div className="flex flex-1 flex-col p-4 sm:p-5 md:p-6">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600 sm:hidden">
+          {productCategories.find((c) => c.id === product.category)?.label}
+        </p>
+        <h3 className="font-display text-sm font-bold leading-snug text-neutral-950 sm:text-base md:text-lg">
           {product.title}
         </h3>
-        <p className="mt-1.5 flex-1 text-[11px] leading-relaxed text-neutral-600 line-clamp-3 sm:mt-2 sm:text-sm">
+        <p className="mt-2 flex-1 text-xs leading-relaxed text-neutral-600 line-clamp-3 sm:mt-2 sm:text-sm">
           {product.description}
         </p>
 
-        <div className="mt-3 grid grid-cols-2 gap-1.5 sm:mt-5 sm:flex sm:flex-row sm:gap-2.5">
+        <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:gap-2.5">
           {product.email ? (
             <a
               href={`mailto:${primaryEmail}?subject=${encodeURIComponent(`Enquiry: ${product.title}`)}`}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-2 text-[11px] font-semibold text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
+              className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm font-semibold text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:flex-1 sm:py-2.5"
             >
-              <Mail className="h-4 w-4 text-amber-600" />
+              <Mail className="h-4 w-4 shrink-0 text-amber-600" />
               Email us
             </a>
           ) : (
             <a
               href={product.download}
               download
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-2 text-[11px] font-semibold text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
+              className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm font-semibold text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:flex-1 sm:py-2.5"
             >
-              <Download className="h-4 w-4 text-amber-600" />
+              <Download className="h-4 w-4 shrink-0 text-amber-600" />
               Download
             </a>
           )}
 
           <a
             href={quoteHref(product.title)}
-            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-neutral-950 px-2.5 py-2 text-[11px] font-semibold text-white transition-all hover:bg-neutral-800 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
+            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-neutral-800 sm:flex-1 sm:py-2.5"
           >
             Get quote
-            <ArrowUpRight className="h-4 w-4 text-amber-400" />
+            <ArrowUpRight className="h-4 w-4 shrink-0 text-amber-400" />
           </a>
         </div>
       </div>
@@ -166,7 +168,7 @@ export default function ProductShowcase() {
           <motion.div
             key={activeCategory}
             layout
-            className="mt-8 card-grid-2-3 sm:mt-10"
+            className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
           >
             {filtered.map((product, i) => (
               <ProductCard key={product.id} product={product} index={i} />
