@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Mail, ArrowUpRight, Package } from "lucide-react";
@@ -7,10 +8,7 @@ import OptimizedImage from "../ui/OptimizedImage";
 import { PillButton } from "../ui/PillButton";
 import { Reveal } from "../ui/Reveal";
 import { cn } from "../../utils/cn";
-
-function quoteHref(productTitle) {
-  return `/contact#enquiry?product=${encodeURIComponent(productTitle)}`;
-}
+import { productDownloadFilename, productDownloadUrl } from "../../utils/download";
 
 function ProductCard({ product, index }) {
   const primaryEmail = company.emails[0];
@@ -54,8 +52,8 @@ function ProductCard({ product, index }) {
             </a>
           ) : (
             <a
-              href={product.download}
-              download
+              href={productDownloadUrl(product)}
+              download={productDownloadFilename(product)}
               className="inline-flex min-w-0 items-center justify-center rounded-full border border-amber-200 bg-amber-50 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
             >
               <Download className="hidden h-3.5 w-3.5 text-amber-600 sm:block md:h-4 md:w-4" />
@@ -63,13 +61,13 @@ function ProductCard({ product, index }) {
             </a>
           )}
 
-          <a
-            href={quoteHref(product.title)}
+          <Link
+            to={`/products/${product.id}`}
             className="inline-flex min-w-0 items-center justify-center gap-0.5 rounded-full bg-neutral-950 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-white transition-all hover:bg-neutral-800 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
           >
-            <span className="truncate">Get quote</span>
+            <span className="truncate">Read more</span>
             <ArrowUpRight className="h-3 w-3 shrink-0 text-amber-400 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </motion.article>
@@ -118,8 +116,8 @@ export default function ProductShowcase() {
               </span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-neutral-600 md:text-lg">
-              KTR couplings, locking assemblies, ball transfer units, and custom drive components — download specs or
-              request a technical quote for any product line.
+              Ten product lines from KTR couplings and AutoLock locking assemblies to Alwayse ball transfer units.
+              Download technical data sheets or request a quote for any product.
             </p>
             <div className="mt-5 h-1 w-14 rounded-full bg-gradient-to-r from-amber-500 to-amber-300" />
           </Reveal>
@@ -175,7 +173,7 @@ export default function ProductShowcase() {
             <p className="mt-2 font-display text-lg font-bold text-white sm:text-xl md:text-2xl">
               Our team supports every technical query
             </p>
-            <p className="mt-1 text-sm text-neutral-400">Share your application — we&apos;ll recommend the right product.</p>
+            <p className="mt-1 text-sm text-neutral-400">Share your application details and we will recommend the right product.</p>
           </div>
           <PillButton
             to="/contact#enquiry"

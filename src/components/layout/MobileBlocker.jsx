@@ -34,7 +34,7 @@ export default function MobileBlocker({ children }) {
           }}
         />
         <div className="relative max-w-sm">
-          <img src={images.logo} alt="SEPL" className="mx-auto h-16 w-auto object-contain" />
+          <img src={images.logo} alt="Nexara Traders" className="mx-auto h-16 w-auto object-contain" />
           <div className="mx-auto mt-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10">
             <Monitor className="h-7 w-7" />
           </div>
@@ -42,7 +42,7 @@ export default function MobileBlocker({ children }) {
           <p className="mt-3 text-base leading-relaxed text-brand-100">
             Please visit us on a desktop or laptop. Our mobile site is coming soon.
           </p>
-          <p className="mt-6 text-sm text-brand-200">Loading Arms Pvt. Ltd. · Steelfab Engineering</p>
+          <p className="mt-6 text-sm text-brand-200">Nexara Traders · Pune, Maharashtra</p>
         </div>
       </div>
     );

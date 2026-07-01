@@ -6,9 +6,9 @@ const partnerBrandNames = partnerBrands.map((b) => b.name);
 export const aboutPage = {
   hero: {
     badge: "About Us",
-    title: "We always deliver",
+    title: "Why Choose Nexara Traders?",
     description:
-      "Nexara Traders — Pune's trusted B2B partner for precision power transmission components, authorised brand partnerships, and technical expertise.",
+      "Pune's trusted B2B source for high-performance couplings, locking assemblies and precision power transmission components.",
   },
   stats: [
     { value: "KTR", label: "Authorised dealer" },
@@ -17,24 +17,37 @@ export const aboutPage = {
     { value: "Genuine", label: "Warranty backed" },
   ],
   story: [
-    "Nexara Traders is Pune's trusted B2B source for high-performance couplings, locking assemblies, and precision power transmission components. We are authorised distributors for KTR Systems (Germany) and channel partners for Zimmer Group, Alwayse Engineering, and HiKOKI.",
-    "Our team provides technical consultation — helping engineers select the right coupling, locking assembly, or transmission component for specific torque, speed, and mounting conditions. From backlash-free servo couplings to ultra-heavy gear couplings, our catalogue covers the complete power transmission spectrum.",
-    "We also supply rack, pinion, gears, timing pulleys, sprockets, and shafts as per customer drawings. Exact supply and prompt service is our commitment to every OEM, machine builder, and plant engineering team we serve.",
+    "Nexara Traders is Pune's trusted B2B source for high-performance couplings, locking assemblies and precision power transmission components. We are authorised distributors for KTR Systems (Germany) and channel partners for Zimmer Group, Alwayse Engineering and HiKOKI.",
+    "Our team provides technical consultation helping engineers select the right coupling, locking assembly or transmission component for specific torque, speed and mounting conditions. From backlash free servo couplings to ultra-heavy gear couplings our catalogue covers the complete power transmission spectrum.",
+    "We supply timing pulleys, gears, sprockets and shafts as per customer drawings alongside our authorised coupling and locking assembly range.",
   ],
-  motto: "Exact supply and prompt service — backed by technical consultation.",
+  motto: "Genuine products, technical depth and responsive supply for Maharashtra's industrial ecosystem.",
   authorizedBrands: partnerBrandNames,
   customSupply: [
-    "Timing pulleys (as per drawing)",
-    "Gears (as per drawing)",
-    "Sprockets (as per drawing)",
-    "Shafts (as per drawing)",
-    "Custom coupling solutions",
-    "Machining services",
+    "Guide for Coupling Selection",
+    "Customized Coupling Manufacturer",
+    "Machining Services",
+    "Timing Pulleys (as per Drawing)",
+    "Gears (as per Drawing)",
+    "Sprockets (as per Drawing)",
+    "Shafts (as per Drawing)",
   ],
   values: [
-    { title: "Authorised partnerships", description: "Genuine KTR and global brand products with full manufacturer warranty." },
-    { title: "Technical consultation", description: "Application sizing, cross-referencing, and engineering support on every enquiry." },
-    { title: "Customer-first service", description: "Responsive supply and long-term relationships built on trust." },
+    {
+      title: "Genuine Products, Manufacturer Warranty",
+      description:
+        "Every component is 100% genuine, carries the manufacturer's warranty and is fully traceable to its origin.",
+    },
+    {
+      title: "Technical Consultation",
+      description:
+        "Selection, cross-referencing, application-specific sizing and technical queries handled by knowledgeable staff.",
+    },
+    {
+      title: "Long-Term Partnership",
+      description:
+        "We build relationships, not transactions. Regular customers receive ongoing technical consultation and application support.",
+    },
   ],
   documents: [
     { id: "flyer", title: "Nexara Traders Flyer", description: "Company overview and product range.", href: "/downloads/nexara-flyer.pdf", type: "download" },
@@ -62,7 +75,16 @@ export const manufacturingContent = {
   processSteps: aboutPage.customSupply,
 };
 export const qualityContent = {
-  industries: ["Automation", "Pumps & Compressors", "Machine Tools", "Packaging", "Pharma & Food", "Heavy Industry"],
+  industries: [
+    "Industrial Automation",
+    "Pumps & Compressors",
+    "Machine Tools & SPM",
+    "Packaging & Material Handling",
+    "Pharma & Food Processing",
+    "Mining, Cement & Heavy Industry",
+    "Renewable Energy",
+    "Textiles & General Engineering",
+  ],
   policy: aboutPage.motto,
 };
 export const certificatesGallery = aboutPage.documents.filter((d) => d.type === "certificate").map((d) => d.image);

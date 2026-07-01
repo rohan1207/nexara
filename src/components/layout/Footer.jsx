@@ -37,7 +37,7 @@ export default function Footer() {
               <Logo variant="footer" />
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-neutral-400">
-              {heroContent.brand} — authorised KTR dealer and channel partner for precision couplings, locking
+              {heroContent.brand} is an authorised KTR dealer and channel partner for precision couplings, locking
               assemblies, and power transmission components. Pune, Maharashtra.
             </p>
 

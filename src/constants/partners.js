@@ -4,10 +4,10 @@ export const partnersSection = {
   eyebrow: "Authorised partnerships",
   title: "Coupling excellence",
   titleAccent: "your gateway to quality",
-  lead: "Welcome to Nexara Traders — Pune's trusted B2B source for quality couplings and precision power transmission components.",
+  lead: "Welcome to Nexara Traders. Pune's trusted B2B source for quality couplings and precision power transmission components.",
   body: [
-    "As an authorised distributor for KTR Systems (Germany) and channel partner for Zimmer Group, Alwayse Engineering, and HiKOKI, Nexara Traders supplies genuine, traceable, manufacturer-warranted components.",
-    "We pride ourselves on technical consultation, responsive supply, and long-term partnerships with OEMs, machine builders, and plant engineering teams across Maharashtra.",
+    "As an authorised distributor for KTR Systems (Germany) and channel partner for Zimmer Group, Alwayse Engineering and HiKOKI, Nexara Traders supplies genuine, traceable, manufacturer-warranted components.",
+    "We provide technical consultation, responsive supply and long-term partnerships with OEMs, machine builders and plant engineering teams across Maharashtra.",
   ],
 };
 

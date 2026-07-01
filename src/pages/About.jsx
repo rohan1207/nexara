@@ -167,11 +167,11 @@ export default function About() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <Reveal>
               <h2 className="font-display text-2xl font-bold text-neutral-950 md:text-3xl">
-                Custom supply & engineering
+                Our services
               </h2>
               <p className="mt-4 text-neutral-600">
-                Beyond catalogue lines, we support tailored drive components and fabrication as per your technical
-                drawings — focused on economical, long-term solutions.
+                Technical guidance and custom manufacturing including coupling selection support, machining services
+                and drive components as per your drawings.
               </p>
               <ul className="mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:gap-3">
                 {aboutPage.customSupply.map((item) => (
@@ -190,11 +190,11 @@ export default function About() {
               <div className="rounded-3xl border border-amber-100 bg-gradient-to-br from-amber-50 via-white to-amber-50/50 p-8 md:p-10">
                 <ShieldCheck className="h-10 w-10 text-amber-500" />
                 <p className="mt-4 font-display text-xl font-bold text-neutral-950 md:text-2xl">
-                  Most economical & long-term solutions
+                  Technical consultation first
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                  Share your application details, load data or drawing — our team will recommend the right product or
-                  supply path for your plant or OEM requirement.
+                  Share your application details, bore size, torque, speed and drawing requirements. Our team will
+                  recommend the right product or supply path for your plant or OEM requirement.
                 </p>
                 <PillButton
                   to="/contact#enquiry"
@@ -280,7 +280,7 @@ export default function About() {
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-neutral-400 md:text-base">
                     Contact Nexara Traders for product enquiries, technical queries, vendor registration or catalogue
-                    downloads. We respond promptly — exact supply is our commitment.
+                    downloads. We respond promptly with technical guidance and quotations.
                   </p>
 
                   <ul className="mt-8 space-y-4 text-sm">

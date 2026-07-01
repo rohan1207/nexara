@@ -50,13 +50,12 @@ export default function Hero() {
 
         <motion.h1
           {...fadeUp(0.08)}
-          className="hero-area-title font-display text-balance text-[clamp(1.75rem,4.8vw,3.25rem)] font-extrabold leading-[1.1] tracking-tight"
+          className="hero-area-title font-display text-balance text-[clamp(1.75rem,4.8vw,3.25rem)] font-extrabold leading-[1.1] tracking-tight text-neutral-950"
         >
           <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 bg-clip-text text-transparent">
-            {heroContent.brand}
-          </span>
-          <span className="text-neutral-950"> — </span>
-          <span className="text-neutral-950">{heroContent.headline}</span>
+            Precision Power Transmission Components.
+          </span>{" "}
+          Engineered for Every Drive.
         </motion.h1>
 
         <div className="hero-area-model my-4 lg:my-0">

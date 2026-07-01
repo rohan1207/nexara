@@ -2,7 +2,7 @@ import { productCatalog } from "./productsCatalog";
 
 export const productLinks = productCatalog.map((p) => ({
   label: p.title.split("—")[0].trim(),
-  href: `/#product-${p.id}`,
+  href: `/products/${p.id}`,
 }));
 
 export const navItems = [

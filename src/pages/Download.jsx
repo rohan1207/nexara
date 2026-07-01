@@ -9,7 +9,7 @@ export default function Download() {
       <PageHero
         badge="Resources"
         title="Download"
-        description="Brochures, catalogues and certificates — download SEPL product and company documentation."
+        description="Brochures, catalogues and certificates. Download Nexara Traders product and company documentation."
       />
       <motion.div className="mx-auto max-w-[1400px] px-5 py-12 md:px-8 md:py-20 lg:px-10">
         <p className="mb-10 max-w-2xl text-[15px] leading-relaxed text-[var(--text-secondary)]">

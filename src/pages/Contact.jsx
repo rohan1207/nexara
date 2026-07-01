@@ -31,7 +31,7 @@ export default function Contact() {
         theme="nexera"
         badge="Contact"
         title="Reach out to us"
-        description="Product enquiries, technical queries, and vendor registration — Nexara Traders, Pune, Maharashtra."
+        description="Product enquiries, technical queries and vendor registration. Nexara Traders, Pune, Maharashtra."
       />
 
       <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-20 lg:px-10">
@@ -93,7 +93,7 @@ export default function Contact() {
                   ))}
                 </ul>
                 <p className="mt-4 text-xs text-neutral-500">
-                  Website:{" "}
+                  For continuously updated product information and technical data sheets visit{" "}
                   <a href={company.website} className="font-medium text-amber-700 hover:underline" target="_blank" rel="noopener noreferrer">
                     www.nexaratraders.com
                   </a>
@@ -106,8 +106,8 @@ export default function Contact() {
                 <h3 className="font-display font-bold text-neutral-950">For your enquiry, include:</h3>
                 <ul className="mt-3 space-y-2 text-sm text-neutral-600">
                   <li>• Product name or KTR / AutoLock model number</li>
-                  <li>• Bore size, shaft diameter, and keyway requirements</li>
-                  <li>• Torque, speed, and application details</li>
+                  <li>• Bore size, shaft diameter and keyway requirements (if applicable)</li>
+                  <li>• Torque, speed and application details</li>
                   <li>• Quantity required</li>
                 </ul>
               </div>

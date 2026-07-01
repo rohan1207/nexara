@@ -7,6 +7,7 @@ import { productCatalog } from "../constants/productsCatalog";
 import { images } from "../constants/images";
 import { PillButton } from "../components/ui/PillButton";
 import { Reveal } from "../components/ui/Reveal";
+import { productDownloadFilename, productDownloadUrl } from "../utils/download";
 
 export default function Products() {
   const location = useLocation();
@@ -26,7 +27,7 @@ export default function Products() {
         theme="nexera"
         badge="Our products"
         title="Precision power transmission components"
-        description="KTR couplings, AutoLock locking assemblies, Alwayse ball transfer units, and custom drive components — authorised, genuine, and technically supported."
+        description="KTR couplings, AutoLock locking assemblies, Alwayse ball transfer units and custom drive components. Authorised, genuine and technically supported."
         image={images.productsHero}
       />
 
@@ -72,19 +73,19 @@ export default function Products() {
                     )}
                     <div className="mt-5 flex flex-col gap-2 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-3">
                       <a
-                        href={product.download}
-                        download
+                        href={productDownloadUrl(product)}
+                        download={productDownloadFilename(product)}
                         className="btn-mobile border border-amber-200 bg-amber-50 text-neutral-950 hover:bg-amber-100"
                       >
                         <Download className="h-4 w-4" /> Download
                       </a>
                       <PillButton
-                        to={`/contact#enquiry?product=${encodeURIComponent(product.title)}`}
+                        to={`/products/${product.id}`}
                         variant="primary"
                         fullWidth
                         className="border-0 bg-neutral-950 text-white hover:bg-neutral-800 sm:w-auto sm:px-5 sm:py-2.5"
                       >
-                        Get quote
+                        Read more
                         <ArrowUpRight className="h-4 w-4 text-amber-400" />
                       </PillButton>
                     </div>
@@ -99,7 +100,7 @@ export default function Products() {
           <div className="rounded-2xl border border-amber-100 bg-gradient-to-r from-neutral-950 to-neutral-900 px-5 py-8 text-center text-white sm:rounded-3xl sm:px-8 sm:py-12 md:px-16">
             <h2 className="font-display text-2xl font-bold md:text-3xl">Need help selecting the right coupling?</h2>
             <p className="mx-auto mt-3 max-w-xl text-neutral-400">
-              Share bore size, torque, speed, and application details — our team provides technical consultation.
+              Share bore size, torque, speed and application details. Our team provides technical consultation.
             </p>
             <PillButton
               to="/contact#enquiry"

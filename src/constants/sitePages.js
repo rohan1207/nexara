@@ -1,15 +1,15 @@
 export const enquiryProducts = [
-  "ROTEX® GR — Flexible Jaw Coupling",
-  "ROTEX® GS — Backlash-Free Coupling",
-  "TOOLFLEX® — Metal Bellow Coupling",
-  "RADEX®-NC — Servo Laminae Coupling",
-  "BoWex® / GEARex® — Gear Coupling",
-  "BoWex® Flange Coupling",
-  "POLY-NORM® / REVOLEX®",
-  "Precision Joints (G, H, X)",
-  "AutoLock DS — Locking Assembly",
-  "Alwayse Ball Transfer Units",
-  "Timing Pulleys / Gears / Sprockets",
+  "Flexible Jaw Couplings — ROTEX® GR Series (KTR)",
+  "Backlash-Free Jaw Couplings — ROTEX® GS Series (KTR)",
+  "Metal Bellow Couplings — TOOLFLEX® Series (KTR)",
+  "Servo Laminae Couplings — RADEX®-NC Series (KTR)",
+  "Gear Couplings — BoWex® & GEARex® Series (KTR)",
+  "Flange Couplings — BoWex® Flange Series (KTR)",
+  "Flexible Pin & Bush Couplings — POLY-NORM® & REVOLEX® (KTR)",
+  "Precision Joints — Series G, H & X (KTR)",
+  "Keyless Locking Assemblies — AutoLock DS Series",
+  "Ball Transfer Units — Alwayse Engineering",
+  "Timing Pulleys / Gears / Sprockets / Shafts (as per Drawing)",
   "Other / Custom",
 ];
 
@@ -47,17 +47,17 @@ export const globalRegions = [
   {
     region: "Maharashtra",
     countries: ["Pune", "Mumbai", "Nashik", "Nagpur", "Kolhapur"],
-    note: "Primary industrial supply hub — OEMs, machine builders, and plant engineers",
+    note: "Primary industrial supply hub for OEMs, machine builders and plant engineers",
   },
   {
     region: "Western India",
     countries: ["Gujarat", "Goa", "Madhya Pradesh"],
-    note: "Process, automation, and manufacturing sectors",
+    note: "Process, automation and manufacturing sectors across the western industrial belt",
   },
   {
     region: "Pan-India",
     countries: ["Bangalore", "Chennai", "Hyderabad", "Delhi NCR"],
-    note: "B2B supply for couplings and power transmission components",
+    note: "B2B supply for couplings, locking assemblies and power transmission components",
   },
 ];
 

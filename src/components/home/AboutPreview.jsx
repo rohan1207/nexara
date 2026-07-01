@@ -6,6 +6,13 @@ import OptimizedImage from "../ui/OptimizedImage";
 import { PillButton } from "../ui/PillButton";
 import { Reveal, Stagger, StaggerItem } from "../ui/Reveal";
 
+
+
+
+
+
+
+
 function BgShapes() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
@@ -42,10 +49,12 @@ export default function AboutPreview() {
                 <div className="mt-2 hidden h-16 w-1 shrink-0 rounded-full bg-gradient-to-b from-amber-500 to-amber-200 sm:block" />
                 <div className="min-w-0">
                   <span className="inline-flex items-center gap-2 rounded-full border border-amber-200/80 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-neutral-800">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-                    {aboutSummary.eyebrow}
-                  </span>
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
 
+                  {aboutSummary.eyebrow}
+                     
+                  </span>
+                    
                   <h2 className="mt-4 font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.12] tracking-tight text-neutral-950">
                     {aboutSummary.title}
                     <span className="mt-1 block bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">
@@ -117,9 +126,9 @@ export default function AboutPreview() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-tr from-neutral-950/50 via-transparent to-amber-500/10" />
                   <div className="absolute bottom-3 left-3 rounded-xl border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-md sm:bottom-4 sm:left-4 sm:rounded-2xl sm:px-4 sm:py-3 md:bottom-6 md:left-6">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-300">Since 1990s</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-300">Pune based</p>
                     <p className="mt-0.5 font-display text-xs font-bold text-white sm:text-sm md:text-base">
-                      Trusted nationwide
+                      Industry ready
                     </p>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ export default function GlobalPresence() {
       <PageHero
         badge="Worldwide reach"
         title="Global Presence"
-        description="From Pune, Maharashtra — delivering fluid handling solutions to customers in Saudi Arabia, Africa, Asia-Pacific and beyond."
+        description="From Pune, Maharashtra. Serving OEMs, machine builders and plant engineering teams across Maharashtra and India."
       />
 
       <div className="mx-auto max-w-[1400px] px-5 py-12 md:px-8 md:py-20 lg:px-10">

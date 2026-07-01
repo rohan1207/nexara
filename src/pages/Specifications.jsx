@@ -12,9 +12,9 @@ export default function Specifications() {
     <div className="bg-neutral-50">
       <PageHero
         theme="nexera"
-        badge="Technical specifications"
-        title="Core technical parameters"
-        description="Key data across KTR couplings, TOOLFLEX® bellow couplings, RADEX®-NC laminae, and AutoLock locking assemblies."
+        badge={specifications.eyebrow}
+        title={specifications.title}
+        description={specifications.description}
         image={images.specs}
       />
 
