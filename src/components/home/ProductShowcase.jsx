@@ -1,87 +1,16 @@
-import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Download, Mail, ArrowUpRight, Package } from "lucide-react";
+import { ArrowUpRight, Package } from "lucide-react";
 import { productCatalog, productCategories } from "../../constants/productsCatalog";
-import { company } from "../../constants/siteContent";
-import OptimizedImage from "../ui/OptimizedImage";
+import ProductCatalogGrid, { filterProducts } from "../products/ProductCatalogGrid";
 import { PillButton } from "../ui/PillButton";
 import { Reveal } from "../ui/Reveal";
 import { cn } from "../../utils/cn";
-import { productDownloadFilename, productDownloadUrl } from "../../utils/download";
-
-function ProductCard({ product, index }) {
-  const primaryEmail = company.emails[0];
-
-  return (
-    <motion.article
-      id={`product-${product.id}`}
-      layout
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.4, delay: index * 0.04 }}
-      className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-neutral-100 bg-white shadow-[0_4px_24px_rgba(15,23,42,0.05)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_20px_50px_rgba(251,191,36,0.14)] sm:rounded-[1.75rem]"
-    >
-      <div className="relative overflow-hidden bg-neutral-100">
-        <OptimizedImage
-          src={product.image}
-          alt={product.title}
-          className="aspect-[5/4] sm:aspect-[4/3]"
-          imgClassName="transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80 sm:from-neutral-950/70 sm:opacity-80" />
-      </div>
-
-      <div className="flex min-w-0 flex-1 flex-col p-2.5 sm:p-5 md:p-6">
-        <h3 className="font-display text-[11px] font-bold leading-snug text-neutral-950 sm:text-base md:text-lg">
-          {product.title}
-        </h3>
-        <p className="mt-1 flex-1 text-[10px] leading-relaxed text-neutral-600 line-clamp-2 sm:mt-2 sm:text-sm sm:line-clamp-3">
-          {product.description}
-        </p>
-
-        <div className="mt-2 grid grid-cols-2 gap-1 sm:mt-5 sm:gap-2.5">
-          {product.email ? (
-            <a
-              href={`mailto:${primaryEmail}?subject=${encodeURIComponent(`Enquiry: ${product.title}`)}`}
-              className="inline-flex min-w-0 items-center justify-center rounded-full border border-amber-200 bg-amber-50 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
-            >
-              <Mail className="hidden h-3.5 w-3.5 text-amber-600 sm:block md:h-4 md:w-4" />
-              <span className="truncate">Email</span>
-            </a>
-          ) : (
-            <a
-              href={productDownloadUrl(product)}
-              download={productDownloadFilename(product)}
-              className="inline-flex min-w-0 items-center justify-center rounded-full border border-amber-200 bg-amber-50 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-neutral-950 transition-all hover:border-amber-300 hover:bg-amber-100 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
-            >
-              <Download className="hidden h-3.5 w-3.5 text-amber-600 sm:block md:h-4 md:w-4" />
-              <span className="truncate">Download</span>
-            </a>
-          )}
-
-          <Link
-            to={`/products/${product.id}`}
-            className="inline-flex min-w-0 items-center justify-center gap-0.5 rounded-full bg-neutral-950 px-1.5 py-1.5 text-[9px] font-semibold leading-none text-white transition-all hover:bg-neutral-800 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:gap-2 md:px-4 md:py-2.5 md:text-sm"
-          >
-            <span className="truncate">Read more</span>
-            <ArrowUpRight className="h-3 w-3 shrink-0 text-amber-400 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4" />
-          </Link>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
 
 export default function ProductShowcase() {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const filtered = useMemo(
-    () =>
-      activeCategory === "all"
-        ? productCatalog
-        : productCatalog.filter((p) => p.category === activeCategory),
+    () => filterProducts({ category: activeCategory }),
     [activeCategory]
   );
 
@@ -116,18 +45,28 @@ export default function ProductShowcase() {
               </span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-neutral-600 md:text-lg">
-              Ten product lines from KTR couplings and AutoLock locking assemblies to Alwayse ball transfer units.
-              Download technical data sheets or request a quote for any product.
+              Eleven product lines from KTR couplings and AutoLock locking assemblies to Alwayse ball transfer units.
+              Tap any card to explore variants, downloads and specifications.
             </p>
             <div className="mt-5 h-1 w-14 rounded-full bg-gradient-to-r from-amber-500 to-amber-300" />
           </Reveal>
 
-          <Reveal delay={0.1} className="flex shrink-0 items-center gap-3 rounded-2xl border border-amber-100 bg-neutral-50 px-5 py-4">
-            <p className="font-display text-3xl font-bold text-amber-600">{productCatalog.length}</p>
-            <p className="text-sm font-medium leading-snug text-neutral-600">
-              Product lines
-              <span className="block text-xs uppercase tracking-wide text-neutral-400">in our catalog</span>
-            </p>
+          <Reveal delay={0.1} className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-3 rounded-2xl border border-amber-100 bg-neutral-50 px-5 py-4">
+              <p className="font-display text-3xl font-bold text-amber-600">{productCatalog.length}</p>
+              <p className="text-sm font-medium leading-snug text-neutral-600">
+                Product lines
+                <span className="block text-xs uppercase tracking-wide text-neutral-400">in our catalog</span>
+              </p>
+            </div>
+            <PillButton
+              to="/products"
+              variant="outline"
+              className="border-neutral-200 px-5 py-3 text-sm sm:shrink-0"
+            >
+              View all
+              <ArrowUpRight className="h-4 w-4" />
+            </PillButton>
           </Reveal>
         </div>
 
@@ -151,17 +90,14 @@ export default function ProductShowcase() {
           </div>
         </Reveal>
 
-        <AnimatePresence mode="popLayout">
-          <motion.div
-            key={activeCategory}
-            layout
-            className="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:gap-4 md:gap-5 lg:grid-cols-3"
-          >
-            {filtered.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        <Reveal delay={0.08}>
+          <ProductCatalogGrid
+            showSearch={false}
+            showResultsCount={false}
+            products={filtered}
+            gridClassName="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:gap-4 md:gap-5 lg:grid-cols-3"
+          />
+        </Reveal>
 
         {filtered.length === 0 && (
           <p className="mt-12 text-center text-neutral-500">No products in this category yet.</p>
@@ -169,19 +105,21 @@ export default function ProductShowcase() {
 
         <Reveal delay={0.15} className="mt-10 flex flex-col items-stretch gap-4 rounded-2xl border border-amber-100 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950 px-4 py-6 text-center sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:rounded-3xl sm:px-6 sm:py-8 sm:text-left md:px-10">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-400">Need help choosing?</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-400">Explore the full catalogue</p>
             <p className="mt-2 font-display text-lg font-bold text-white sm:text-xl md:text-2xl">
-              Our team supports every technical query
+              Search, filter and browse all products
             </p>
-            <p className="mt-1 text-sm text-neutral-400">Share your application details and we will recommend the right product.</p>
+            <p className="mt-1 text-sm text-neutral-400">
+              Open the dedicated products page for search and complete listings.
+            </p>
           </div>
           <PillButton
-            to="/contact#enquiry"
+            to="/products"
             variant="primary"
             fullWidth
             className="shrink-0 border-0 bg-amber-500 text-neutral-950 hover:bg-amber-400 sm:w-auto"
           >
-            Talk to an expert
+            View all products
             <ArrowUpRight className="h-4 w-4" />
           </PillButton>
         </Reveal>

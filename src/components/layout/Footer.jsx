@@ -85,7 +85,7 @@ export default function Footer() {
               {footerProducts.map((item) => (
                 <li key={item}>
                   <Link
-                    to="/#products"
+                    to="/products"
                     className="text-sm text-neutral-400 transition-colors hover:text-white"
                   >
                     {item}

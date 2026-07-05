@@ -7,7 +7,7 @@ export default function ProductCatalogDetail() {
   const product = getProductById(id);
 
   if (!product) {
-    return <Navigate to="/#products" replace />;
+    return <Navigate to="/products" replace />;
   }
 
   return <ProductCatalogDetailTemplate product={product} />;

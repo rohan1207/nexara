@@ -102,7 +102,7 @@ export default function ApplicationsSection() {
             <ArrowUpRight className="h-4 w-4 text-amber-400" />
           </PillButton>
           <Link
-            to="/#products"
+            to="/products"
             className="btn-mobile border border-amber-200 bg-white text-neutral-950 transition-colors hover:border-amber-300 hover:bg-amber-50"
           >
             View product catalog

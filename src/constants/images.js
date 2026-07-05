@@ -14,6 +14,68 @@ const SHUFFLE = [
 
 export const productImg = (seed = 0) => productImages[SHUFFLE[Math.abs(seed) % SHUFFLE.length]];
 
+/** Encode public folder paths (handles spaces in folder/file names). */
+export function publicImage(relativePath) {
+  if (!relativePath) return productImages[0];
+  const normalized = relativePath.startsWith("/") ? relativePath : `/${relativePath}`;
+  return normalized
+    .split("/")
+    .map((segment, index) => (index === 0 && segment === "" ? "" : encodeURIComponent(segment)))
+    .join("/");
+}
+
+/** Client product photos in public/Product Images and public/Locking Assemblies */
+export const productPhotos = {
+  "rotex-gr": "Product Images/Rotex GR.png",
+  "rotex-gs": "Product Images/Rotex GS.png",
+  "toolflex": "Product Images/Toolflex Image .png",
+  "radex-nc": "Product Images/Radex NC DK.png",
+  "bowex-gearex": "Product Images/Bowex.png",
+  "bowex-flange": "Product Images/Bowex Flange Couplings.png",
+  "polynorm-revolex": "Product Images/Polynorm .png",
+  "precision-joints": "Product Images/Precision Joints.png",
+  "autolock-ds": "Locking Assemblies/Clampex KTR 400.png",
+  "alwayse-btu": "Product Images/Alwayse Ball Transfer unit.png",
+};
+
+export const productGalleries = {
+  "rotex-gs": ["Product Images/Rotex GS Compact.png"],
+  "toolflex": ["Product Images/Toolflex Mini.png"],
+  "radex-nc": [
+    "Product Images/RADEX NC EK.png",
+    "Product Images/Radex NNZ.png",
+    "Product Images/Radex N.png",
+  ],
+  "bowex-gearex": ["Product Images/Gearex.png"],
+  "polynorm-revolex": ["Product Images/Revolex.png"],
+  "autolock-ds": [
+    "Locking Assemblies/Clampex KTR 100.png",
+    "Locking Assemblies/Clampex KTR 105.png",
+    "Locking Assemblies/Clampex KTR 150.png",
+    "Locking Assemblies/Clampex KTR 200.png",
+    "Locking Assemblies/Clampex KTR 201.png",
+    "Locking Assemblies/Clampex KTR 203.png",
+    "Locking Assemblies/Clampex KTR 206.png",
+    "Locking Assemblies/Clampex KTR 225.png",
+    "Locking Assemblies/Clampex KTR 250.png",
+    "Locking Assemblies/Clampex KTR 400.png",
+    "Locking Assemblies/Clampex KTR 603.png",
+    "Locking Assemblies/Clampex KTR 620.png",
+    "Locking Assemblies/Clampex KTR 700.png",
+  ],
+};
+
+export function getProductPhoto(productId) {
+  return publicImage(productPhotos[productId] ?? productImages[0]);
+}
+
+export function getProductGallery(productId) {
+  const main = productPhotos[productId];
+  return (productGalleries[productId] ?? [])
+    .filter((path) => path !== main)
+    .map(publicImage);
+}
+
 export const images = {
   logo: "/logo.png",
   products: {
@@ -38,15 +100,9 @@ export const images = {
   about: productImg(26),
   specs: productImg(27),
   contact: productImg(28),
-  productsHero: productImg(29),
+  productsHero: publicImage("Product Images/Rotex GR.png"),
 };
 
 export function getProductImage(productId) {
-  const map = {
-    "top-loading": images.products.topLoading,
-    "bottom-loading": images.products.bottomLoading,
-    "test-aiders": images.products.testAiders,
-    "ptfe-lined": images.products.ptfe,
-  };
-  return map[productId] || images.products.topLoading;
+  return getProductPhoto(productId) || images.products.topLoading;
 }

@@ -1,119 +1,67 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { CheckCircle2, Download, ArrowUpRight } from "lucide-react";
 import PageHero from "../components/layout/PageHero";
-import OptimizedImage from "../components/ui/OptimizedImage";
-import { productCatalog } from "../constants/productsCatalog";
-import { images } from "../constants/images";
+import ProductCatalogGrid from "../components/products/ProductCatalogGrid";
 import { PillButton } from "../components/ui/PillButton";
 import { Reveal } from "../components/ui/Reveal";
-import { productDownloadFilename, productDownloadUrl } from "../utils/download";
+import { productCatalog } from "../constants/productsCatalog";
+import { images } from "../constants/images";
+import { ArrowUpRight, Package } from "lucide-react";
 
 export default function Products() {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace("#", "");
-      requestAnimationFrame(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
-  }, [location.hash]);
-
   return (
     <div className="bg-neutral-50">
       <PageHero
         theme="nexera"
         badge="Our products"
         title="Precision power transmission components"
-        description="KTR couplings, AutoLock locking assemblies, Alwayse ball transfer units and custom drive components. Authorised, genuine and technically supported."
+        description="Browse KTR couplings, AutoLock locking assemblies and Alwayse ball transfer units. Search, filter by category and open any product for variants, downloads and technical details."
         image={images.productsHero}
       />
 
-      <div className="mx-auto max-w-[1400px] space-y-8 px-4 py-10 sm:space-y-12 sm:px-5 sm:py-12 md:space-y-16 md:px-8 md:py-20 lg:px-10">
-        {productCatalog.map((product, index) => {
-          const reversed = index % 2 === 1;
-          return (
-            <Reveal key={product.id}>
-              <section
-                id={product.id}
-                className="scroll-mt-28 overflow-hidden rounded-3xl border border-neutral-100 bg-white shadow-[0_8px_32px_rgba(15,23,42,0.06)]"
-              >
-                <div className={`grid lg:grid-cols-2 ${reversed ? "lg:[direction:rtl]" : ""}`}>
-                  <div className={`relative ${reversed ? "lg:[direction:ltr]" : ""}`}>
-                    <OptimizedImage
-                      src={product.image}
-                      alt={product.title}
-                      className="aspect-[4/3] lg:aspect-auto lg:min-h-[380px]"
-                      imgClassName="lg:absolute lg:inset-0 lg:h-full"
-                    />
-                    <span className="absolute left-4 top-4 rounded-full bg-neutral-950 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-amber-400">
-                      {product.tag}
-                    </span>
-                  </div>
-                  <div className={`flex flex-col justify-center p-5 sm:p-8 md:p-10 ${reversed ? "lg:[direction:ltr]" : ""}`}>
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
-                      Product {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h2 className="mt-2 font-display text-xl font-bold text-neutral-950 md:text-2xl">{product.title}</h2>
-                    <p className="mt-4 text-[15px] leading-relaxed text-neutral-600">{product.description}</p>
-                    {product.features && (
-                      <>
-                        <h3 className="mt-6 text-sm font-bold uppercase tracking-wider text-neutral-800">Key features</h3>
-                        <ul className="mt-3 space-y-2">
-                          {product.features.map((f) => (
-                            <li key={f} className="flex items-start gap-2 text-sm text-neutral-600">
-                              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-                              {f}
-                            </li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
-                    <div className="mt-5 flex flex-col gap-2 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-3">
-                      <a
-                        href={productDownloadUrl(product)}
-                        download={productDownloadFilename(product)}
-                        className="btn-mobile border border-amber-200 bg-amber-50 text-neutral-950 hover:bg-amber-100"
-                      >
-                        <Download className="h-4 w-4" /> Download
-                      </a>
-                      <PillButton
-                        to={`/products/${product.id}`}
-                        variant="primary"
-                        fullWidth
-                        className="border-0 bg-neutral-950 text-white hover:bg-neutral-800 sm:w-auto sm:px-5 sm:py-2.5"
-                      >
-                        Read more
-                        <ArrowUpRight className="h-4 w-4 text-amber-400" />
-                      </PillButton>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </Reveal>
-          );
-        })}
+      <section className="pb-14 pt-8 sm:pb-20 sm:pt-10 md:pb-24">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-5 md:px-8 lg:px-10">
+          <Reveal className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-amber-200/80 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-neutral-800">
+                <Package className="h-3.5 w-3.5 text-amber-600" />
+                Full catalogue
+              </span>
+              <h2 className="mt-3 font-display text-2xl font-bold text-neutral-950 sm:text-3xl">
+                {productCatalog.length} product lines
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-600 sm:text-base">
+                Every card is clickable. Products with multiple variants show sub-options on the detail page and in the navigation menu.
+              </p>
+            </div>
+          </Reveal>
 
-        <Reveal>
-          <div className="rounded-2xl border border-amber-100 bg-gradient-to-r from-neutral-950 to-neutral-900 px-5 py-8 text-center text-white sm:rounded-3xl sm:px-8 sm:py-12 md:px-16">
-            <h2 className="font-display text-2xl font-bold md:text-3xl">Need help selecting the right coupling?</h2>
-            <p className="mx-auto mt-3 max-w-xl text-neutral-400">
-              Share bore size, torque, speed and application details. Our team provides technical consultation.
-            </p>
-            <PillButton
-              to="/contact#enquiry"
-              variant="primary"
-              fullWidth
-              className="mt-6 border-0 bg-amber-500 text-neutral-950 hover:bg-amber-400 sm:mt-8 sm:w-auto sm:px-8"
-            >
-              Send technical enquiry
-              <ArrowUpRight className="h-4 w-4" />
-            </PillButton>
-          </div>
-        </Reveal>
-      </div>
+          <Reveal delay={0.05}>
+            <ProductCatalogGrid />
+          </Reveal>
+
+          <Reveal delay={0.1} className="mt-12 rounded-2xl border border-amber-100 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950 px-5 py-8 text-center text-white sm:mt-16 sm:rounded-3xl sm:px-8 sm:py-10 md:text-left">
+            <div className="md:flex md:items-center md:justify-between md:gap-8">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-400">Need help choosing?</p>
+                <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">
+                  Our team supports every technical query
+                </h3>
+                <p className="mt-2 max-w-xl text-sm text-neutral-400">
+                  Share bore size, torque, speed and application details. We will recommend the right coupling or locking assembly.
+                </p>
+              </div>
+              <PillButton
+                to="/contact#enquiry"
+                variant="primary"
+                fullWidth
+                className="mt-6 shrink-0 border-0 bg-amber-500 text-neutral-950 hover:bg-amber-400 md:mt-0 md:w-auto md:px-6"
+              >
+                Send technical enquiry
+                <ArrowUpRight className="h-4 w-4" />
+              </PillButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

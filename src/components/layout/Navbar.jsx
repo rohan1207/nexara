@@ -15,6 +15,35 @@ const navPill =
 const navActive = "bg-neutral-950 text-white shadow-[0_2px_12px_rgba(0,0,0,0.12)]";
 const navIdle = "text-neutral-600 hover:bg-amber-50 hover:text-neutral-950";
 
+function ProductNavItem({ item, onNavigate }) {
+  return (
+    <div className="rounded-xl px-2 py-1.5 transition-colors hover:bg-amber-50/70">
+      <Link
+        to={item.href}
+        className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 text-[13px] font-semibold text-neutral-900 hover:text-neutral-950"
+        onClick={onNavigate}
+      >
+        <span className="min-w-0 leading-snug">{item.label}</span>
+        <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-amber-600" />
+      </Link>
+      {item.variants?.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 px-2 pb-2">
+          {item.variants.map((variant) => (
+            <Link
+              key={variant.href}
+              to={variant.href}
+              className="rounded-full border border-neutral-200 bg-white px-2.5 py-1 text-[11px] font-medium text-neutral-600 transition-all hover:border-amber-200 hover:bg-amber-50 hover:text-neutral-950"
+              onClick={onNavigate}
+            >
+              {variant.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function NavDropdown({ label, children, href }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -28,6 +57,8 @@ function NavDropdown({ label, children, href }) {
     document.addEventListener("mousedown", close);
     return () => document.removeEventListener("mousedown", close);
   }, []);
+
+  const closeMenu = () => setOpen(false);
 
   return (
     <div
@@ -53,30 +84,111 @@ function NavDropdown({ label, children, href }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.16 }}
-            className="absolute left-0 top-full z-50 mt-2 max-h-[min(70vh,420px)] min-w-[280px] overflow-y-auto rounded-2xl border border-amber-100/90 bg-white/95 p-2 shadow-[0_16px_48px_rgba(251,191,36,0.12)] backdrop-blur-md"
+            className="absolute left-1/2 top-full z-50 mt-2 max-h-[min(78vh,560px)] w-[min(92vw,680px)] -translate-x-1/2 overflow-y-auto rounded-2xl border border-amber-100 bg-white p-2 shadow-[0_20px_60px_rgba(15,23,42,0.12)]"
           >
             <Link
               to={href}
-              className="mb-1 flex items-center justify-between rounded-full px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-amber-700 hover:bg-amber-50"
-              onClick={() => setOpen(false)}
+              className="mb-1 flex items-center justify-between rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider text-amber-700 hover:bg-amber-50"
+              onClick={closeMenu}
             >
-              View all
+              View all products
               <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
             <div className="h-px bg-amber-100" />
-            <ul className="mt-1 space-y-0.5">
-              {children.slice(0, 12).map((item) => (
-                <li key={item.href}>
-                  <Link
-                    to={item.href}
-                    className="block rounded-full px-4 py-2 text-[13px] font-medium text-neutral-600 hover:bg-amber-50 hover:text-neutral-950"
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
+            <div className="mt-1 grid gap-0.5 sm:grid-cols-2">
+              {children.map((item) => (
+                <ProductNavItem key={item.href} item={item} onNavigate={closeMenu} />
               ))}
-            </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function MobileProductsNav({ items, href, closeMobile, pathname }) {
+  const [open, setOpen] = useState(false);
+  const [expandedId, setExpandedId] = useState(null);
+  const isActive = isNavActive(pathname, href);
+
+  return (
+    <div className="border-b border-amber-50">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className={cn(
+          "flex w-full items-center justify-between py-3.5 font-display text-base font-semibold",
+          isActive ? "text-amber-700" : "text-neutral-950"
+        )}
+      >
+        Products
+        <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-1 pb-3 pl-1">
+              <Link
+                to={href}
+                className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold text-amber-700 hover:bg-amber-50"
+                onClick={closeMobile}
+              >
+                View all products
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+
+              {items.map((item) => {
+                const hasVariants = item.variants?.length > 0;
+                const isExpanded = expandedId === item.href;
+
+                return (
+                  <div key={item.href} className="rounded-xl border border-transparent hover:border-amber-100">
+                    <div className="flex items-stretch">
+                      <Link
+                        to={item.href}
+                        className="min-w-0 flex-1 px-3 py-2.5 text-sm font-semibold text-neutral-900"
+                        onClick={closeMobile}
+                      >
+                        {item.label}
+                      </Link>
+                      {hasVariants && (
+                        <button
+                          type="button"
+                          onClick={() => setExpandedId(isExpanded ? null : item.href)}
+                          className="inline-flex w-10 shrink-0 items-center justify-center text-neutral-500"
+                          aria-label={`Show ${item.label} variants`}
+                        >
+                          <ChevronDown className={cn("h-4 w-4 transition-transform", isExpanded && "rotate-180")} />
+                        </button>
+                      )}
+                    </div>
+
+                    {hasVariants && isExpanded && (
+                      <div className="flex flex-wrap gap-1.5 px-3 pb-2.5">
+                        {item.variants.map((variant) => (
+                          <Link
+                            key={variant.href}
+                            to={variant.href}
+                            className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs font-medium text-neutral-700"
+                            onClick={closeMobile}
+                          >
+                            {variant.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -111,7 +223,6 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-[100]">
-        {/* Slim top bar — desktop only */}
         <div className="hidden border-b border-white/10 bg-neutral-950 lg:block">
           <div className="mx-auto flex h-9 max-w-[1400px] items-center justify-between px-8 text-[11px] text-neutral-400 xl:px-10">
             <p className="font-medium uppercase tracking-[0.14em] text-neutral-500">
@@ -136,7 +247,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Main nav */}
         <div
           className={cn(
             "border-b transition-all duration-300",
@@ -199,7 +309,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Spacer — matches fixed header height exactly */}
       <div className="h-[var(--nav-height)] shrink-0" aria-hidden />
 
       <AnimatePresence>
@@ -232,19 +341,29 @@ export default function Navbar() {
               </div>
 
               <nav className="flex-1 overflow-y-auto px-5 py-3">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className={cn(
-                      "block border-b border-amber-50 py-3.5 font-display text-base font-semibold",
-                      isNavActive(location.pathname, item.href) ? "text-amber-700" : "text-neutral-950"
-                    )}
-                    onClick={closeMobile}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {navItems.map((item) =>
+                  item.children ? (
+                    <MobileProductsNav
+                      key={item.label}
+                      items={item.children}
+                      href={item.href}
+                      closeMobile={closeMobile}
+                      pathname={location.pathname}
+                    />
+                  ) : (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className={cn(
+                        "block border-b border-amber-50 py-3.5 font-display text-base font-semibold",
+                        isNavActive(location.pathname, item.href) ? "text-amber-700" : "text-neutral-950"
+                      )}
+                      onClick={closeMobile}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
               </nav>
 
               <div className="border-t border-amber-100 p-4 sm:p-5">

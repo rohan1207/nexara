@@ -325,7 +325,7 @@ export default function About() {
                       <ArrowUpRight className="h-4 w-4" />
                     </PillButton>
                     <Link
-                      to="/#products"
+                      to="/products"
                       className="btn-mobile border border-white/20 text-white transition-colors hover:bg-white/10 lg:w-full xl:w-auto"
                     >
                       View products
