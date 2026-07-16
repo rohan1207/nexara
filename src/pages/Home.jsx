@@ -18,7 +18,7 @@ export default function Home() {
       <ManufacturingGallery />
       <ApplicationsSection />
       <ClientsStrip />
-      <GlobalReachSection />
+      {/* <GlobalReachSection /> */}
       <ContactCta />
     </>
   );
