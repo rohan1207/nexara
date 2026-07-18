@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { applicationsSection } from "../../constants/siteContent";
+import { publicImage } from "../../constants/images";
 import { PillButton } from "../ui/PillButton";
 import { Reveal, Stagger, StaggerItem } from "../ui/Reveal";
-import AnimatedAppIcon from "./AnimatedAppIcon";
 
 export default function ApplicationsSection() {
   const { applications, highlights } = applicationsSection;
@@ -40,9 +40,13 @@ export default function ApplicationsSection() {
               <StaggerItem key={app.title}>
                 <div className="group flex h-full flex-col rounded-xl border border-neutral-100 bg-white card-pad shadow-[0_4px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:border-amber-200 hover:shadow-[0_12px_40px_rgba(251,191,36,0.1)] sm:rounded-2xl">
                   <div className="mb-3 flex items-start justify-between gap-2 sm:mb-5 sm:gap-4">
-                    <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-neutral-950 sm:h-11 sm:w-11 sm:rounded-xl">
-                      <span className="pointer-events-none absolute inset-0 bg-amber-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <AnimatedAppIcon type={app.icon} />
+                    <span className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-neutral-100 bg-neutral-50 p-1.5 sm:h-16 sm:w-16 sm:rounded-xl sm:p-2">
+                      <img
+                        src={publicImage(app.image)}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
                     </span>
                     <span className="font-display text-lg font-bold leading-none text-amber-100 transition-colors group-hover:text-amber-200 sm:text-2xl">
                       {String(i + 1).padStart(2, "0")}

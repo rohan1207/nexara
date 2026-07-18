@@ -53,7 +53,7 @@ export default function HeroModelViewer() {
 
           <model-viewer
             ref={modelRef}
-            src="/model.glb"
+            src="/model.gltf"
             alt="Nexara Traders mechanical coupling 3D model"
             loading="eager"
             camera-controls

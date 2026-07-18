@@ -55,7 +55,7 @@ export default function Contact() {
               <div className="rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm md:p-8">
                 <h2 className="font-display text-xl font-bold text-neutral-950">Direct contacts</h2>
                 <p className="mt-2 text-sm text-neutral-500">
-                  Proprietor: <strong className="text-neutral-800">{company.proprietor}</strong>
+                  partner: <strong className="text-neutral-800">{company.partner}</strong>
                 </p>
                 <ul className="mt-5 space-y-4">
                   {company.phones.map((phone) => (

@@ -4,7 +4,7 @@ export const company = {
   shortName: "Nexara",
   tagline: "Precision Power Transmission · Pune, Maharashtra",
   website: "https://www.nexaratraders.com",
-  proprietor: "Chintan Shinde",
+  partner: "Chintan Shinde",
   address: {
     line1: "Nexara Traders",
     line2: "Pune, Maharashtra",
@@ -30,7 +30,7 @@ export const heroContent = {
     "Nexara Traders is Pune's trusted B2B source for high-performance couplings, locking assemblies and precision power transmission components sourced from globally certified manufacturers, backed by technical expertise and delivered with reliability.",
   stats: [
     { value: "KTR", label: "Authorised partner" },
-    { value: "0.1–2.75M", label: "Nm torque range" },
+    { value: "0.1–2.75 NM", label: "Nm torque range" },
     { value: "Pune", label: "Industry ready" },
     { value: "B2B", label: "Technical support" },
   ],
@@ -105,6 +105,7 @@ export const applicationsSection = {
       description:
         "CNC machining centres, servo drives, indexing tables, robotic cells and linear positioning systems.",
       icon: "cpu",
+      image: "Product Images/Rotex GS.png",
       products: "ROTEX® GS, TOOLFLEX®, RADEX®-NC, KTR Precision Joints, AutoLock Locking Assemblies",
     },
     {
@@ -112,42 +113,49 @@ export const applicationsSection = {
       description:
         "Centrifugal pumps, gear pumps, screw compressors, reciprocating compressors and blower drives.",
       icon: "gauge",
+      image: "Product Images/Bowex Flange Couplings.png",
       products: "ROTEX® GR, BoWex® (flange and gear), POLY-NORM®, REVOLEX®",
     },
     {
       title: "Machine Tools & Special Purpose Machines",
       description: "Milling, turning, grinding, hobbing, SPM builds and transfer lines.",
       icon: "factory",
+      image: "Product Images/Toolflex Image .png",
       products: "ROTEX® GS, TOOLFLEX®, AutoLock Locking Assemblies (sprockets, pulleys, gears)",
     },
     {
       title: "Packaging & Material Handling",
       description: "Filling, capping, cartoning, wrapping machines and conveyor systems.",
       icon: "package",
+      image: "Product Images/Rotex GS Compact.png",
       products: "ROTEX® GR/GS, AutoLock MS Series, Alwayse Ball Transfer Units",
     },
     {
       title: "Pharmaceutical & Food Processing Equipment",
       description: "Hygienic drives, sanitary couplings and wash-down material handling systems.",
       icon: "flask",
+      image: "Product Images/Rotex GR.png",
       products: "ROTEX® GR (ATEX rated), BoWex® (food-grade configurations), Alwayse Type 15 (stainless BTU)",
     },
     {
       title: "Mining, Cement & Heavy Industry",
       description: "Conveyors, ball mills, jaw crushers, drag lines and large fan drives.",
       icon: "hammer",
+      image: "Product Images/Gearex.png",
       products: "GEARex® (up to 2,750,000 Nm), REVOLEX®, AutoLock MS-400/MS-620",
     },
     {
       title: "Renewable Energy & Power Generation",
       description: "Wind turbines, generator drives, solar tracking systems and tidal power equipment.",
       icon: "truck",
+      image: "Locking Assemblies/Clampex KTR 400.png",
       products: "ROTEX® GR, BoWex® Gear, AutoLock Locking Assemblies",
     },
     {
       title: "Textiles, Printing & General Engineering",
       description: "Braiding machines, printing presses and paper and cardboard machinery.",
       icon: "factory",
+      image: "Product Images/Polynorm .png",
       products: "POLY-NORM®, REVOLEX®, AutoLock MS Series",
     },
   ],
@@ -161,7 +169,7 @@ export const applicationsSection = {
     {
       title: "Wide torque range",
       detail: "From micro servo couplings at 0.1 Nm to ultra-heavy gear couplings at 2,750,000 Nm.",
-      tag: "0.1 – 2.75M Nm",
+      tag: "0.1 – 2.75 NM",
     },
     {
       title: "Long-term partnership",
@@ -234,7 +242,7 @@ export const specifications = {
   description: "Core technical parameters by product category and materials of construction.",
   highlights: [
     { value: "0.1 Nm", label: "Minimum torque" },
-    { value: "2.75M Nm", label: "Max gear coupling" },
+    { value: "2.75 NM", label: "Max gear coupling" },
     { value: "47,700 rpm", label: "Max speed (TOOLFLEX®)" },
     { value: "ATEX", label: "Certified options" },
   ],
@@ -319,7 +327,7 @@ export const clientele = [];
 export const clientHighlights = [
   { value: "KTR", label: "Authorised dealer" },
   { value: "10", label: "Product lines" },
-  { value: "2.75M Nm", label: "Max coupling torque" },
+  { value: "2.75 NM", label: "Max coupling torque" },
   { value: "Pune", label: "B2B supply hub" },
 ];
 

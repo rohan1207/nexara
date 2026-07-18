@@ -1,12 +1,40 @@
 import { motion } from "framer-motion";
 import { Globe2, Layers, Cog, Sparkles } from "lucide-react";
 import { whyChooseUs } from "../../constants/siteContent";
-import { images } from "../../constants/images";
-import OptimizedImage from "../ui/OptimizedImage";
+import { publicImage } from "../../constants/images";
 import { Reveal, Stagger, StaggerItem } from "../ui/Reveal";
 import { cn } from "../../utils/cn";
 
 const icons = [Globe2, Layers, Cog, Sparkles];
+
+const bentoImages = [
+  { src: "Product Images/Rotex GS.png", alt: "ROTEX GS coupling" },
+  { src: "Product Images/Toolflex Image .png", alt: "TOOLFLEX bellow coupling" },
+  { src: "Product Images/Gearex.png", alt: "GEARex gear coupling" },
+  { src: "Product Images/Rotex GS Compact.png", alt: "Ball Transfer Unit" },
+  { src: "Product Images/Bowex Flange Couplings.png", alt: "BoWex flange coupling" },
+  { src: "Locking Assemblies/Clampex KTR 400.png", alt: "Clampex locking assembly" },
+  { src: "Product Images/Precision Joints.png", alt: "KTR precision joints" },
+  { src: "Product Images/Radex NC DK.png", alt: "RADEX-NC coupling" },
+];
+
+function BentoTile({ src, alt, className }) {
+  return (
+    <div
+      className={cn(
+        "group/tile relative min-h-0 overflow-hidden rounded-lg bg-white sm:rounded-xl",
+        className
+      )}
+    >
+      <img
+        src={publicImage(src)}
+        alt={alt}
+        loading="lazy"
+        className="h-full w-full object-contain p-1.5 transition-transform duration-500 group-hover/tile:scale-105 sm:p-2"
+      />
+    </div>
+  );
+}
 
 function FeatureCard({ item, index, wide = false }) {
   const Icon = icons[index] || Sparkles;
@@ -102,19 +130,46 @@ export default function WhyChooseSection() {
         </Reveal>
 
         <div className="mt-10 grid gap-6 lg:mt-14 lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-12">
-          {/* Left image — stretches to match right column height */}
+          {/* Left bento — same container, product mosaic */}
           <Reveal direction="left" className="relative flex h-full min-h-0 flex-col pb-5 sm:pb-6 lg:pb-5">
-            <div className="relative flex h-full min-h-[300px] flex-1 overflow-hidden rounded-2xl border border-amber-100/80 shadow-[0_24px_60px_rgba(251,191,36,0.12)] sm:min-h-[340px] sm:rounded-3xl lg:min-h-0">
-              <OptimizedImage
-                src={images.factory[0]}
-                alt="Nexara Traders power transmission solutions"
-                className="h-full w-full"
-                imgClassName="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/10 via-transparent to-transparent" />
+            <div className="relative flex h-full min-h-[320px] flex-1 overflow-hidden rounded-2xl border border-amber-100/80 bg-neutral-100 shadow-[0_24px_60px_rgba(251,191,36,0.12)] sm:min-h-[380px] sm:rounded-3xl lg:min-h-0">
+              {/*
+                Phone: 2 cols × 4 rows — featured 2×2, then 6 equal tiles
+                sm+: 3 cols × 3 rows — featured 2×2, two on right, three along bottom
+              */}
+              <div className="absolute inset-0 grid grid-cols-2 grid-rows-4 gap-1.5 p-1.5 sm:grid-cols-3 sm:grid-rows-3 sm:gap-2 sm:p-2">
+                <BentoTile
+                  src={bentoImages[0].src}
+                  alt={bentoImages[0].alt}
+                  className="col-span-2 row-span-2"
+                />
+                <BentoTile src={bentoImages[1].src} alt={bentoImages[1].alt} />
+                <BentoTile src={bentoImages[2].src} alt={bentoImages[2].alt} />
+                <BentoTile src={bentoImages[3].src} alt={bentoImages[3].alt} />
+                <BentoTile src={bentoImages[4].src} alt={bentoImages[4].alt} />
+                {/* Desktop: 6th tile completes bottom row of 3 */}
+                <BentoTile
+                  src={bentoImages[5].src}
+                  alt={bentoImages[5].alt}
+                  className="hidden sm:block"
+                />
+                {/* Phone: two more tiles to fill remaining 2-col row */}
+                <BentoTile
+                  src={bentoImages[6].src}
+                  alt={bentoImages[6].alt}
+                  className="sm:hidden"
+                />
+                <BentoTile
+                  src={bentoImages[7].src}
+                  alt={bentoImages[7].alt}
+                  className="sm:hidden"
+                />
+              </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8">
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-neutral-950/85 via-neutral-950/35 to-transparent sm:h-32" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-amber-500/5 via-transparent to-transparent" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
                 <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-400 sm:text-xs">
                   {whyChooseUs.imageCaption.label}
                 </p>

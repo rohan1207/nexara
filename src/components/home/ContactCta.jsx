@@ -23,12 +23,12 @@ export default function ContactCta() {
                   Send your product enquiry
                 </h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-neutral-600">
-                  Share product name, bore size, torque and speed requirements and quantity. {company.proprietor} and our
+                  Share product name, bore size, torque and speed requirements and quantity. {company.partner} and our
                   team respond with technical guidance and quotations.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm">
                   <li className="text-neutral-500">
-                    <span className="font-semibold text-neutral-800">Proprietor:</span> {company.proprietor}
+                    <span className="font-semibold text-neutral-800">partner:</span> {company.partner}
                   </li>
                   <li>
                     <a
