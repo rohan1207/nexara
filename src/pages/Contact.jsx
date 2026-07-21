@@ -7,10 +7,13 @@ import { company } from "../constants/siteContent";
 import { enquiryProducts } from "../constants/sitePages";
 import { cn } from "../utils/cn";
 import { Reveal } from "../components/ui/Reveal";
+import { submitForm } from "../lib/submitForm";
 
 export default function Contact() {
   const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (location.hash === "#enquiry") {
@@ -20,9 +23,21 @@ export default function Contact() {
     }
   }, [location.hash]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    setSending(true);
+    setError("");
+    try {
+      await submitForm({ formType: "Contact Enquiry", ...data });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -140,6 +155,7 @@ export default function Contact() {
                       <input
                         required
                         type="text"
+                        name="name"
                         className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-amber-400 sm:px-4 sm:py-3 sm:text-sm"
                       />
                     </label>
@@ -147,6 +163,7 @@ export default function Contact() {
                       <span className="text-sm font-semibold">Company</span>
                       <input
                         type="text"
+                        name="company"
                         className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-amber-400 sm:px-4 sm:py-3 sm:text-sm"
                       />
                     </label>
@@ -155,6 +172,7 @@ export default function Contact() {
                       <input
                         required
                         type="email"
+                        name="email"
                         className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-amber-400 sm:px-4 sm:py-3 sm:text-sm"
                       />
                     </label>
@@ -163,12 +181,16 @@ export default function Contact() {
                       <input
                         required
                         type="tel"
+                        name="phone"
                         className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-amber-400 sm:px-4 sm:py-3 sm:text-sm"
                       />
                     </label>
                     <label className="col-span-2 block">
                       <span className="text-sm font-semibold">Product interest</span>
-                      <select className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-amber-400 sm:px-4 sm:py-3 sm:text-sm">
+                      <select
+                        name="product"
+                        className="mt-1.5 w-full rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-amber-400 sm:px-4 sm:py-3 sm:text-sm"
+                      >
                         {enquiryProducts.map((p) => (
                           <option key={p} value={p}>
                             {p}
@@ -180,19 +202,26 @@ export default function Contact() {
                       <span className="text-sm font-semibold">Message *</span>
                       <textarea
                         required
+                        name="message"
                         rows={5}
                         placeholder="Bore size, torque, speed, application, quantity..."
                         className="mt-1.5 w-full resize-y rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-base outline-none focus:ring-2 focus:ring-amber-400 sm:px-4 sm:py-3 sm:text-sm"
                       />
                     </label>
                   </div>
+                  {error && (
+                    <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                      {error}
+                    </p>
+                  )}
                   <button
                     type="submit"
+                    disabled={sending}
                     className={cn(
-                      "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-neutral-800 active:scale-[0.98] sm:w-auto"
+                      "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-neutral-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                     )}
                   >
-                    Submit enquiry
+                    {sending ? "Sending..." : "Submit enquiry"}
                     <Send className="h-4 w-4 text-amber-400" />
                   </button>
                 </form>

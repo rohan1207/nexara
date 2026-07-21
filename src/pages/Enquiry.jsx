@@ -4,13 +4,28 @@ import { Send, Phone, Mail, MapPin } from "lucide-react";
 import PageHero from "../components/layout/PageHero";
 import { enquiryProducts } from "../constants/sitePages";
 import { cn } from "../utils/cn";
+import { submitForm } from "../lib/submitForm";
 
 export default function Enquiry() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    setSending(true);
+    setError("");
+    try {
+      await submitForm({ formType: "Enquiry", ...data });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -127,13 +142,19 @@ export default function Enquiry() {
                     />
                   </label>
                 </div>
+                {error && (
+                  <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {error}
+                  </p>
+                )}
                 <button
                   type="submit"
+                  disabled={sending}
                   className={cn(
-                    "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-700 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-brand-800 active:scale-[0.98] sm:w-auto"
+                    "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-700 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-brand-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
                   )}
                 >
-                  Submit enquiry
+                  {sending ? "Sending..." : "Submit enquiry"}
                   <Send className="h-4 w-4" />
                 </button>
               </form>
