@@ -22,7 +22,10 @@ export default function Enquiry() {
       setSubmitted(true);
       form.reset();
     } catch (err) {
-      setError(err.message || "Something went wrong. Please try again.");
+      console.error("Enquiry submission failed:", err);
+      setError(
+        "Sorry, we couldn't send your enquiry right now. Please try again, or email us at nexaratraders@gmail.com."
+      );
     } finally {
       setSending(false);
     }

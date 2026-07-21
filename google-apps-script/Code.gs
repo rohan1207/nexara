@@ -63,8 +63,16 @@ function doPost(e) {
       pageUrl: p.pageUrl || "",
     };
 
+    // Saving the lead to the sheet is the primary goal.
     saveToSheet_(row);
-    sendEmail_(row);
+
+    // The owner notification email is best-effort: if Resend fails (e.g. bad
+    // key), we still return success so the visitor is never shown an error.
+    try {
+      sendEmail_(row);
+    } catch (mailErr) {
+      console.error("Email notification failed:", mailErr);
+    }
 
     return json_({ result: "success" });
   } catch (err) {
