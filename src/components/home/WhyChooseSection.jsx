@@ -132,48 +132,40 @@ export default function WhyChooseSection() {
         <div className="mt-10 grid gap-6 lg:mt-14 lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-12">
           {/* Left bento — same container, product mosaic */}
           <Reveal direction="left" className="relative flex h-full min-h-0 flex-col pb-5 sm:pb-6 lg:pb-5">
-            <div className="relative flex h-full min-h-[320px] flex-1 overflow-hidden rounded-2xl border border-amber-100/80 bg-neutral-100 shadow-[0_24px_60px_rgba(251,191,36,0.12)] sm:min-h-[380px] sm:rounded-3xl lg:min-h-0">
+            <div className="relative flex h-full min-h-[260px] flex-1 overflow-hidden rounded-2xl border border-amber-100/80 bg-neutral-100 shadow-[0_24px_60px_rgba(251,191,36,0.12)] sm:min-h-[380px] sm:rounded-3xl lg:min-h-0">
               {/*
-                Phone: 2 cols × 4 rows — featured 2×2, then 6 equal tiles
-                sm+: 3 cols × 3 rows — featured 2×2, two on right, three along bottom
+                Phone: clean 2×2 grid (4 tiles)
+                sm+: 3×3 bento — featured 2×2, two on right, three along bottom
               */}
-              <div className="absolute inset-0 grid grid-cols-2 grid-rows-4 gap-1.5 p-1.5 sm:grid-cols-3 sm:grid-rows-3 sm:gap-2 sm:p-2">
+              <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-1.5 p-1.5 sm:grid-cols-3 sm:grid-rows-3 sm:gap-2 sm:p-2">
                 <BentoTile
                   src={bentoImages[0].src}
                   alt={bentoImages[0].alt}
-                  className="col-span-2 row-span-2"
+                  className="sm:col-span-2 sm:row-span-2"
                 />
                 <BentoTile src={bentoImages[1].src} alt={bentoImages[1].alt} />
                 <BentoTile src={bentoImages[2].src} alt={bentoImages[2].alt} />
                 <BentoTile src={bentoImages[3].src} alt={bentoImages[3].alt} />
-                <BentoTile src={bentoImages[4].src} alt={bentoImages[4].alt} />
-                {/* Desktop: 6th tile completes bottom row of 3 */}
+                <BentoTile
+                  src={bentoImages[4].src}
+                  alt={bentoImages[4].alt}
+                  className="hidden sm:block"
+                />
                 <BentoTile
                   src={bentoImages[5].src}
                   alt={bentoImages[5].alt}
                   className="hidden sm:block"
-                />
-                {/* Phone: two more tiles to fill remaining 2-col row */}
-                <BentoTile
-                  src={bentoImages[6].src}
-                  alt={bentoImages[6].alt}
-                  className="sm:hidden"
-                />
-                <BentoTile
-                  src={bentoImages[7].src}
-                  alt={bentoImages[7].alt}
-                  className="sm:hidden"
                 />
               </div>
 
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-neutral-950/85 via-neutral-950/35 to-transparent sm:h-32" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-amber-500/5 via-transparent to-transparent" />
 
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+              <div className="absolute bottom-0 left-0 right-0 p-4 pr-28 sm:p-6 sm:pr-6 md:p-8 md:pr-8">
                 <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-400 sm:text-xs">
                   {whyChooseUs.imageCaption.label}
                 </p>
-                <p className="mt-1 font-display text-lg font-bold text-white sm:mt-1.5 sm:text-xl md:text-2xl">
+                <p className="mt-1 font-display text-base font-bold leading-snug text-white sm:mt-1.5 sm:text-xl md:text-2xl">
                   {whyChooseUs.imageCaption.headline}
                 </p>
               </div>

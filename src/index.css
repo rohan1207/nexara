@@ -234,7 +234,7 @@
   left: 0;
   width: 100%;
   height: calc(100% + clamp(20px, 3.5vh, 40px));
-  min-height: min(52vw, 320px);
+  min-height: min(62vw, 420px);
   --poster-color: transparent;
   background: transparent;
   overflow: visible;
@@ -242,7 +242,7 @@
 
 @media (min-width: 1024px) {
   .hero-model-viewer {
-    min-height: min(60vh, 580px);
+    min-height: min(72vh, 700px);
     height: calc(100% + clamp(24px, 4vh, 48px));
   }
 }

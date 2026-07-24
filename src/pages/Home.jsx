@@ -4,7 +4,7 @@ import AboutPreview from "../components/home/AboutPreview";
 import ProductShowcase from "../components/home/ProductShowcase";
 import ManufacturingGallery from "../components/home/ManufacturingGallery";
 import ApplicationsSection from "../components/home/ApplicationsSection";
-import ClientsStrip from "../components/home/ClientsStrip";
+// import ClientsStrip from "../components/home/ClientsStrip";
 import GlobalReachSection from "../components/home/GlobalReachSection";
 import ContactCta from "../components/home/ContactCta";
 
@@ -17,7 +17,7 @@ export default function Home() {
       <ProductShowcase />
       <ManufacturingGallery />
       <ApplicationsSection />
-      <ClientsStrip />
+      {/* <ClientsStrip /> */}
       {/* <GlobalReachSection /> */}
       <ContactCta />
     </>

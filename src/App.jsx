@@ -3,7 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Specifications from "./pages/Specifications";
-import Clients from "./pages/Clients";
+// import Clients from "./pages/Clients";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ProductCatalogDetail from "./pages/ProductCatalogDetail";
@@ -22,7 +22,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductCatalogDetail />} />
           <Route path="/specifications" element={<Specifications />} />
-          <Route path="/clients" element={<Clients />} />
+          {/* <Route path="/clients" element={<Clients />} /> */}
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

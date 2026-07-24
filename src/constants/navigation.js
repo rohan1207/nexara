@@ -17,7 +17,7 @@ export const navItems = [
   { label: "About Us", href: "/about" },
   { label: "Products", href: "/products", children: productLinks },
   { label: "Technical Specs", href: "/specifications" },
-  { label: "Clients", href: "/clients" },
+  // { label: "Clients", href: "/clients" },
   { label: "Contact", href: "/contact" },
 ];
 
